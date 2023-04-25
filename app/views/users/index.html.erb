@@ -1,0 +1,45 @@
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+<%= render 'users/userinfo',user: current_user %>
+
+<%= render 'books/newbook' %>
+ </div>
+
+    <div class="col-md-8 offset-md-1">
+      <h2>Users</h2>
+      <table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>image</th>
+      <th>name</th>
+      <th colspan="3"></th>
+                    <% @users.each do |user| %>
+          <tr>
+            <td><%= link_to user_path(user) do %>
+              <%= image_tag @user.get_profile_image %>
+            <% end %></td>
+              <td><%=  user.name %></td>
+              
+              <td><%=link_to "Show",user_path(user) %></td>
+            </tr>
+            <% end %>
+    </tr>
+  </thead>
+  </table>
+    </div>
+
+</div>
+</div>
